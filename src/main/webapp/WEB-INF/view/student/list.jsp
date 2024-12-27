@@ -63,7 +63,27 @@
                     <td>${student.getPoint()}</td>
                     <td>${student.getClassName()}</td>
                     <td><button class="btn btn-warning">Cập nhật</button></td>
-                    <td><button class="btn btn-danger">Xóa</button></td>
+                    <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete${student.code}">Xóa</button></td>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalDelete${student.code}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Xóa học sinh</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bạn có muốn xóa học sinh có tên là ${student.name} và có code là ${student.code} hay không?</p>
+                                    <small style="color: red; font-style: italic">Lưu ý: hành động này không thể hoàn tác!</small>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="window.location.href='/student?action=delete&id=${student.code}'">Xác nhận</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </tr>
             </c:forEach>
         </tbody>

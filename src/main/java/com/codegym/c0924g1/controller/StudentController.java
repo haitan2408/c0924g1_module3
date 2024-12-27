@@ -27,6 +27,9 @@ public class StudentController extends HttpServlet {
                 case "created":
                     req.setAttribute("message", "Thêm mới thành công");
                     break;
+                case "deleted":
+                    req.setAttribute("message", "Xóa thành công");
+                    break;
             }
         }
         if (action == null) {
@@ -39,6 +42,9 @@ public class StudentController extends HttpServlet {
             case "update":
                 break;
             case "delete":
+                int id = Integer.parseInt(req.getParameter("id"));
+                studentService.remove(id);
+                resp.sendRedirect("/student?message=deleted");
                 break;
             default:
                 List<Student> students = studentService.getAll();
